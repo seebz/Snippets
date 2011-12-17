@@ -32,7 +32,7 @@ add_filter('get_the_excerpt', 'do_shortcode');
 
 
 /**
- * Enable Shortcodes for titles
+ * Enable Shortcodes for posts title
  */
 add_filter('single_post_title', 'do_shortcode');
 add_filter('the_title', 'do_shortcode');
@@ -40,6 +40,13 @@ add_filter('wp_title', 'do_shortcode');
 
 
 /**
+ * Enable Shortcodes for widgets title
+ */
+add_filter('widget_title', 'do_shortcode');
+
+
+/**
  * Enable Shortcodes for WP_Widget_Text
  */
 add_filter('widget_text', 'do_shortcode');
+
