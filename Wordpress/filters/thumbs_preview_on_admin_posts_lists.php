@@ -4,11 +4,14 @@
 /**
  * Thumbs preview on admin posts lists
  */
+if ( !is_admin() ) {
+	return;
+}
 class Thumbs_Preview_On_Admin_Posts_Lists {
 	
 	public $column_id    = 'post-thumbnail';
 	public $column_title = 'Thumbnail';
-	public $column_style = 'width:10%;';
+	public $column_style = 'width:80px;';
 	public $thumb_size   = array(60, 60);
 	
 	public function __construct() {
