@@ -14,7 +14,7 @@ function shortcode_youtube($atts) {
 		'width'  => '420',
 		'height' => '315',
 	), $atts));
-	return sprintf('<iframe src="http://www.youtube.com/embed/%s" width="%d" height="%d" frameborder="0" allowfullscreen></iframe>',
+	return sprintf('<iframe class="youtube" src="http://www.youtube.com/embed/%s" width="%d" height="%d" frameborder="0" allowfullscreen></iframe>',
 		$id,
 		$width,
 		$height
