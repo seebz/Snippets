@@ -1,7 +1,7 @@
 
 jQuery(function(){
 	
-	// Amélioration de show/hide pour pouvoir fonction avec des <option> sous IE
+	// Amélioration de show/hide pour pouvoir fonctionner avec des <option> sous IE
 	if (jQuery.browser.msie) {
 		var ___show = jQuery.fn.show;
 		jQuery.fn.show = function() {
