@@ -1,6 +1,11 @@
 <?php
 
 
+/**
+ * Affiche le whois d'un domaine
+ * @param string $domain
+ * @return mixed 
+ */
 function whois_domain($domain) {
 	if (!is_string($domain) || !preg_match('`^[a-z]{1,}([-\.][a-z]+)+$`i', $domain)) {
 		return false; // not a valid domain ?
@@ -35,3 +40,6 @@ function whois_domain($domain) {
 	
 	return $response_or_next_server;
 }
+
+
+?>

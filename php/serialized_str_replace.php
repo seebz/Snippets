@@ -1,6 +1,4 @@
 <?php
-header('Content-Type: text/plain');
-
 
 
 /**
@@ -65,29 +63,4 @@ function serialized_str_ireplace($search, $replace, $str) {
 }
 
 
-
-
-
-echo '> original data' ."\n";
-$str = 'replace in serialized string is very difficult';
-$serialized_str = serialize($str);
-var_dump($str);
-var_dump($serialized_str);
-
-
-$search  = 'is very difficult';
-$replace = 'become easy';
-
-
-echo "\n". '> using str_replace()' ."\n";
-$using_str_replace = str_replace($search, $replace, $serialized_str);
-var_dump( $using_str_replace );
-var_dump( unserialize( $using_str_replace ) );
-
-
-echo "\n". '> using serialized_str_replace()' ."\n";
-$using_serialized_str_replace = serialized_str_replace($search, $replace, $serialized_str);
-var_dump( $using_serialized_str_replace );
-var_dump( unserialize( $using_serialized_str_replace ) );
-
-
+?>
