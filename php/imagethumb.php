@@ -1,5 +1,15 @@
 <?php
 
+
+/**
+ * Envoie la miniature d'une image vers un navigateur ou un fichier.
+ * @param string $image_src Chemin vers l'image source.
+ * @param string|null $image_dest Le chemin de destination. S'il n'est pas défini ou s'il vaut NULL, le flux brut de l'image sera affiché directement.
+ * @param intger|array $size La taille maximale de l'image de destination.
+ * @param boolean $crop Si ce paramètre vaut TRUE, la miniature gardera les proportions de la source.
+ * @param boolean $stretch Si ce paramètre vaut TRUE, l'image pourra éventuellement être étirée pour toujours avoir la taille $size définie.
+ * @return boolean Cette fonction retourne TRUE en cas de succès ou FALSE si une erreur survient. 
+ */
 function imagethumb($image_src, $image_dest = NULL, $size = 100, $crop = FALSE, $stretch = FALSE) {
 	if (!file_exists($image_src)) return FALSE;
 
@@ -117,5 +127,6 @@ function imagethumb($image_src, $image_dest = NULL, $size = 100, $crop = FALSE, 
 
 	return TRUE;
 }
+
 
 ?>
