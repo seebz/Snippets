@@ -19,14 +19,14 @@ var LocationHash = {
 	},
 	getArg: function(key) {
 		var args = this.getArgs();
-		return (typeof(args[key]) == 'undefined' ? null : args[key]);
+		return (typeof(args[key]) === 'undefined' ? null : args[key]);
 	},
 	getArgs: function() {
 		var h = this.getHash().split('&');
 		var args = {};
 		for(var i=0, frag; frag=h[i]; i++) {
 			frag = frag.split('=');
-			args[ frag[0] ] = (typeof(frag[1]) !== 'undefined' ? frag[1] : null);
+			args[ frag[0] ] = (typeof(frag[1]) !== 'undefined' ? this.decode(frag[1]) : null);
 		}
 		return args;
 	},
@@ -40,7 +40,10 @@ var LocationHash = {
 		args = args || {};
 		var hash = [];
 		for(var key in args) {
-			hash.push(key +'='+ args[ key ]);
+			var value = args[ key ];
+			if (typeof(value) != 'undefined' && value != 'undefined') {
+				hash.push(key +'='+ this.encode(value));
+			}
 		}
 		this.setHash( hash.join('&') );
 		return this;
@@ -51,7 +54,7 @@ var LocationHash = {
 		this.setArgs(args);
 		return this;
 	},
-	removeArgs: function(polymorphic) {
+	removeArgs: function(/* poly */) {
 		var keys = [];
 		if (arguments.length === 1) {
 			keys = arguments[0];
@@ -67,5 +70,11 @@ var LocationHash = {
 		}
 		this.setArgs(args);
 		return this;
+	},
+	encode: function(str) {
+		return encodeURIComponent( str);
+	},
+	decode: function(str) {
+		return decodeURIComponent( str.replace(/[+]/g, ' ') );
 	}
 };
