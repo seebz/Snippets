@@ -11,9 +11,8 @@ var LocationHash = {
 		if (hash) {
 			hash = '#'+ hash.replace(/^#/, '');
 		}
-		var loc = document.location.href.replace(document.location.hash, hash);
-		if (document.location.href != loc) {
-			document.location.href = loc;
+		if (document.location.hash != hash) {
+			document.location = hash;
 		}
 		return this;
 	},
