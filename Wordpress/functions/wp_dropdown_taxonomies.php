@@ -8,7 +8,7 @@ if ( !function_exists('wp_dropdown_taxonomies') ) {
 	function wp_dropdown_taxonomies($args = '') {
 		$defaults = array(
 			'selected' => 0, 'echo' => 1,
-			'name' => 'post_type', 'id' => '',
+			'name' => 'taxonomy', 'id' => '',
 			'show_option_none' => '', 'show_option_no_change' => '',
 			'option_none_value' => ''
 		);
@@ -23,7 +23,7 @@ if ( !function_exists('wp_dropdown_taxonomies') ) {
 		if ( empty($id) )
 			$id = $name;
 
-		if ( ! empty($post_types) ) {
+		if ( ! empty($taxonomies) ) {
 			$output = "<select name='" . esc_attr( $name ) . "' id='" . esc_attr( $id ) . "'>\n";
 			if ( $show_option_no_change )
 				$output .= "\t<option value=\"-1\">$show_option_no_change</option>";
