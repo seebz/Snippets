@@ -2,7 +2,7 @@
 /*
  Plugin Name: Debug Bar in BP
  Description: Adds the <em>Debug Bar button</em> to the <em>Buddypress Adminbar</em>.
- Version: 0.1
+ Version: 0.2
  Author: Seebz
  Author URI: http://seebz.net/
  */
@@ -17,7 +17,7 @@ class Debug_Bar_In_Bp {
 	public function plugins_loaded() {
 		global $debug_bar;
 
-		if ( is_admin() || ! is_super_admin() || ! function_exists('bbpress')
+		if ( is_admin() || ! is_super_admin() || ! defined('BP_VERSION')
 			|| ! isset($debug_bar) || $debug_bar->is_wp_login() )
 			return;
 
