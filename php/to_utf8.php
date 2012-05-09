@@ -9,7 +9,7 @@
 function to_utf8($data = null) {
 	if ( is_string($data) ) {
 		if ($data !== mb_convert_encoding( mb_convert_encoding($data, 'UTF-32', 'UTF-8'), 'UTF-8', 'UTF-32') ) {
-			$data = mb_convert_encoding($data, 'UTF-8');
+			$data = mb_convert_encoding($data, 'UTF-8', mb_detect_encoding($data));
 		}
 	} elseif ( is_array($data) ) {
 		$data = array_map(__FUNCTION__, $data);
