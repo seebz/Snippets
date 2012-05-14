@@ -4,14 +4,14 @@
 /**
  * Remove `Core` upgrade notifications
  */
-add_filter('pre_site_transient_update_core', create_function('', 'return null;'));
+add_filter('pre_site_transient_update_core', '__return_false');
 wp_clear_scheduled_hook('wp_version_check');
 
 
 /**
  * Remove `Plugins` upgrade notifications
  */
-add_filter('pre_site_transient_update_plugins', create_function('', 'return null;'));
+add_filter('pre_site_transient_update_plugins', '__return_false');
 wp_clear_scheduled_hook('wp_update_plugins');
 remove_action('load-update-core.php', 'wp_update_plugins');
 
@@ -19,7 +19,7 @@ remove_action('load-update-core.php', 'wp_update_plugins');
 /**
  * Remove `Themes` upgrade notifications
  */
-add_filter('pre_site_transient_update_themes', create_function('', 'return null;'));
+add_filter('pre_site_transient_update_themes', '__return_false');
 wp_clear_scheduled_hook('wp_update_themes');
 remove_action('load-update-core.php', 'wp_update_themes');
 
@@ -36,3 +36,4 @@ function remove_dashboard_menu_upgrade_entry() {
 		unset($submenu['index.php'][10]);
 	}
 }
+
