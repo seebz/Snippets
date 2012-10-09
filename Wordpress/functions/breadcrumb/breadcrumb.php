@@ -8,7 +8,7 @@ if (function_exists('breadcrumb')) return;
 function breadcrumb($args = array())
 {
 	// Args
-	$defaults = array(
+	$defaults = apply_filters('breadcrumb_defaults', array(
 		'container'        => 'div', 
 		'container_class'  => 'breadcrumb-container', 
 		'container_id'     => '',
@@ -21,7 +21,7 @@ function breadcrumb($args = array())
 		'items_wrap'       => '<nav id="%1$s" class="%2$s">%3$s</nav>',
 		'separator'        => ' » ',
 		'echo'             => true,
-	);
+	));
 	$args = wp_parse_args($args, $defaults);
 	$args = apply_filters('breadcrumb_args', $args);
 	$args = (object) $args;
