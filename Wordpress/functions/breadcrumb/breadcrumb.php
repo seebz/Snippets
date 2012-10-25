@@ -1,7 +1,24 @@
 <?php
 
 
-if (function_exists('breadcrumb')) return;
+
+if (defined('BREADCRUMB_LOADED'))
+	return;
+else
+	define('BREADCRUMB_LOADED', true);
+
+
+
+
+
+// Breadcrumb for BuddyPress
+add_action('bp_init', 'breadcrumb_init_bp');
+function breadcrumb_init_bp()
+{
+	$bp_file = dirname(__FILE__) . '/bp.php';
+	if (file_exists($bp_file))
+		include_once $bp_file;
+}
 
 
 
@@ -108,6 +125,10 @@ function breadcrumb_items($items, $args)
 	$output = array();
 	foreach ($items as $item)
 	{
+		$item_title = $item->title();
+		$item_url   = $item->url();
+		if ( ! $item_title && ! $item_url) continue;
+
 		$item_classes = array();
 		if ($item == $first_item)
 			$item_classes[] = 'first-item';
@@ -115,13 +136,13 @@ function breadcrumb_items($items, $args)
 			$item_classes[] = 'last-item';
 		$classes = apply_filters('breadcrumb_item_classes', $item_classes, $item, $args, $items);
 
-		$attributes = ' href="' . esc_attr( $item->url()) . '"';
+		$attributes = ' href="' . esc_attr($item_url) . '"';
 		if ( ! empty($item_classes))
 			$attributes .= ' class="' . implode(' ', $item_classes) . '"';
 
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'>';
-		$item_output .= $args->link_before . $item->title() . $args->link_after;
+		$item_output .= $args->link_before . $item_title . $args->link_after;
 		$item_output .= '</a>';
 		$item_output .= $args->after;
 
