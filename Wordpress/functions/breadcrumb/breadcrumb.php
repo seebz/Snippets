@@ -22,6 +22,12 @@ function breadcrumb_init_bp()
 
 
 
+// Filters for Breadcrumb
+include_once dirname(__FILE__) . '/filters.php';
+
+
+
+
 function breadcrumb($args = array())
 {
 	// Args
@@ -504,13 +510,13 @@ class Breadcrumb_Item_Singular extends Breadcrumb_Item
 
 		// Parent post
 		elseif ( $this->item->post_parent )
-			$post_parent = new self($this->item->post_parent);
+			$parent = new self($this->item->post_parent);
 
 		// Archive
 		else
-			$post_parent = new Breadcrumb_Item_Archive($this->item->post_type);
+			$parent = new Breadcrumb_Item_Archive($this->item->post_type);
 
-		return apply_filters('breadcrumb_item_parent', $post_parent, $this);
+		return apply_filters('breadcrumb_item_parent', $parent, $this);
 	}
 
 	public function child_item()
