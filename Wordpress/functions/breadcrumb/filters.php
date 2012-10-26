@@ -61,3 +61,45 @@ function breadcrumb_inject_post_category($parent, $item)
 }
 
 
+
+/**
+ * Breadcrumb for Foundation CSS framework
+ * (http://foundation.zurb.com/)
+ */
+
+//add_action('init', 'breadcumb_init_foundation');
+function breadcumb_init_foundation()
+{
+	add_filter('breadcrumb_defaults', 'breadcrumb_foundation_defaults');
+	add_filter('breadcrumb_container_allowedtags', 'breadcrumb_foundation_container_allowedtags');
+	add_filter('breadcrumb_item_output', 'breadcrumb_foundation_item_output', 10 ,4);
+}
+
+
+function breadcrumb_foundation_defaults($defaults = array())
+{
+	return array(
+		'container'        => 'nav',
+		'items_wrap'       => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		'breadcrumb_class' => 'breadcrumbs',
+		'before'           => '<li>',
+		'after'            => '</li>',
+		'separator'        => ' ',
+	) + $defaults;
+}
+
+function breadcrumb_foundation_container_allowedtags($tags)
+{
+	$tags[] = 'ul';
+	return $tags;
+}
+
+function breadcrumb_foundation_item_output($item_output, $item, $args, $items)
+{
+	if ($item == end($items))
+		return sprintf('<li class="current">%s</li>', strip_tags($item_output, '<a>'));
+
+	return $item_output;
+}
+
+
