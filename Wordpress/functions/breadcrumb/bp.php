@@ -376,7 +376,8 @@ class Breadcrumb_BP_Component_Group_Forum_Topic extends Breadcrumb_BP_Item
 
 	public function url()
 	{
-		$url = $this->params['group_action']->url()
+		$url = untrailingslashit( $this->params['group_item']->url() )
+			. '/forum/'
 			. $this->params['bp_action_variables'][0] . '/'
 			. $this->params['bp_action_variables'][1] . '/';
 
