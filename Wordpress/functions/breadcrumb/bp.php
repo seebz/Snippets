@@ -202,7 +202,7 @@ class Breadcrumb_BP_Component_Action extends Breadcrumb_BP_Component
 		else
 			$url = '';
 
-		return apply_filters('breadcrumb_item_title', $url, $this);
+		return apply_filters('breadcrumb_item_url', $url, $this);
 	}
 
 
