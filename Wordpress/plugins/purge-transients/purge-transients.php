@@ -2,7 +2,7 @@
 /*
 Plugin Name:  Purge Transients
 Description:  Purge old transients
-Version:      0.1
+Version:      0.2
 Author:       Seebz
 */
 
