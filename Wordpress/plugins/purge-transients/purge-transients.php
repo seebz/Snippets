@@ -61,7 +61,7 @@ register_activation_hook(__FILE__, 'purge_transients_activation');
 
 
 
-function my_plugin_deactivation () {
+function purge_transients_deactivation () {
 	if (wp_next_scheduled('purge_transients_cron')) {
 		wp_clear_scheduled_hook('purge_transients_cron');
 	}
