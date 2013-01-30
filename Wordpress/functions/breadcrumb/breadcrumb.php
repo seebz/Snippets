@@ -51,7 +51,13 @@ function breadcrumb($args = array())
 
 
 	// Current item
-	if (is_tax() || is_category() || is_tag())
+	if (is_404())
+		$current = new Breadcrumb_Item_404();
+
+	elseif (is_search())
+		$current = new Breadcrumb_Item_Search();
+
+	elseif (is_tax() || is_category() || is_tag())
 		$current= new Breadcrumb_Item_Taxonomy();
 
 	elseif (is_archive() || is_home() || is_front_page())
@@ -59,12 +65,6 @@ function breadcrumb($args = array())
 
 	elseif (is_singular())
 		$current = new Breadcrumb_Item_Singular();
-
-	elseif (is_search())
-		$current = new Breadcrumb_Item_Search();
-
-	elseif (is_404())
-		$current = new Breadcrumb_Item_404();
 
 	else
 		$current = null;
