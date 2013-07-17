@@ -2,7 +2,7 @@
 /*
 Plugin Name:  Purge Transients
 Description:  Purge old transients
-Version:      0.2
+Version:      0.2.1
 Author:       Seebz
 */
 
@@ -30,16 +30,16 @@ if ( ! function_exists('purge_transients') ) {
 				get_transient($transient);
 			}
 		} else {
-			$option_names = array();
+			$options_names = array();
 			foreach($transients as $transient) {
-				$option_names[] = '_transient_' . $transient;
-				$option_names[] = '_transient_timeout_' . $transient;
+				$options_names[] = '_transient_' . $transient;
+				$options_names[] = '_transient_timeout_' . $transient;
 			}
 			if ($options_names) {
 				$options_names = array_map(array($wpdb, 'escape'), $options_names);
 				$options_names = "'". implode("','", $options_names) ."'";
 				
-				$result = $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name IN ({$option_names})" );
+				$result = $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name IN ({$options_names})" );
 				if (!$result) {
 					return false;
 				}
