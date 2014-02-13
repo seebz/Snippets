@@ -9,6 +9,7 @@ if ( !function_exists('wp_dropdown_post_types') ) {
 		$defaults = array(
 			'selected' => 0, 'echo' => 1,
 			'name' => 'post_type', 'id' => '',
+			'class' => '',
 			'show_option_none' => '', 'show_option_no_change' => '',
 			'option_none_value' => ''
 		);
@@ -24,7 +25,7 @@ if ( !function_exists('wp_dropdown_post_types') ) {
 			$id = $name;
 
 		if ( ! empty($post_types) ) {
-			$output = "<select name='" . esc_attr( $name ) . "' id='" . esc_attr( $id ) . "'>\n";
+			$output = "<select name='" . esc_attr( $name ) . "' id='" . esc_attr( $id ) . "' class='" . esc_attr( $class ) . "'>\n";
 			if ( $show_option_no_change )
 				$output .= "\t<option value=\"-1\">$show_option_no_change</option>";
 			if ( $show_option_none )
