@@ -359,7 +359,7 @@ class Breadcrumb_Item_Archive extends Breadcrumb_Item
 		elseif ($this->_is_home() && get_option('page_for_posts'))
 			$title = get_the_title(get_option('page_for_posts'));
 		else
-			$title = apply_filters('post_type_archive_title', $this->item->labels->name );
+			$title = isset($this->item->labels->name) ? apply_filters('post_type_archive_title', $this->item->labels->name ) : false;
 
 		return apply_filters('breadcrumb_item_title', $title, $this);
 	}
@@ -371,7 +371,7 @@ class Breadcrumb_Item_Archive extends Breadcrumb_Item
 		elseif ($this->_is_home())
 			$url = get_permalink( get_option('page_for_posts') );
 		else
-			$url = get_post_type_archive_link($this->item->name);
+			$url = isset($this->item->name) ? get_post_type_archive_link($this->item->name) : false;
 
 		// Params
 		if ($this->params['year'])
@@ -438,12 +438,12 @@ class Breadcrumb_Item_Archive extends Breadcrumb_Item
 
 	protected function _is_home()
 	{
-		return ($this->item->name == 'post');
+		return (isset($this->item->name) && $this->item->name == 'post');
 	}
 
 	protected function _is_front_page()
 	{
-		return ($this->item->name == 'page' || ($this->item->name == 'post' && ! get_option('page_for_posts')));
+		return (isset($this->item->name) && ($this->item->name == 'page' || ($this->item->name == 'post' && ! get_option('page_for_posts'))));
 	}
 
 	protected function _month_i18n($num)
